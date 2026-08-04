@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mission Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="mission-page">
+
+<div class="navbar">
+    <h2>✈ AEROMANAGE 3</h2>
+    <div>
+        <a href="/dashboard">Home</a>
+        <a href="/fleet">Fleet</a>
+        <a href="/mission">Missions</a>
+        <a href="/pilots">Pilots</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Mission Management</h1>
+
+    <!-- PLAN MISSION FORM -->
+    <div class="form-card">
+        <h3>Assign New Mission</h3>
+        <form method="POST">
+            <input type="text" name="mission_name" placeholder="Mission Name" required>
+            <input type="number" name="distance" placeholder="Distance (km)" required>
+
+            <!-- Aircraft Dropdown -->
+            <select name="aircraft_id" required>
+                <option value="">Select Aircraft</option>
+                {% for a in aircraft_list %}
+                    <option value="{{ a.aircraft_id }}">
+                        {{ a.aircraft_name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <!-- Pilot Dropdown -->
+            <select name="pilot_id" required>
+                <option value="">Select Pilot</option>
+                {% for p in pilot_list %}
+                    <option value="{{ p.pilot_id }}">
+                        {{ p.pilot_name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Assign Mission</button>
+        </form>
+    </div>
+
+
+    <!-- ACTIVE MISSIONS -->
+    <h2>Active Missions</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Mission Name</th>
+            <th>Distance</th>
+            <th>Aircraft</th>
+            <th>Pilot</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for m in missions %}
+            {% if m.status != 'Completed' %}
+            <tr>
+                <td>{{ m.mission_id }}</td>
+                <td>{{ m.mission_name }}</td>
+                <td>{{ m.distance_km }} km</td>
+                <td>{{ m.aircraft_name if m.aircraft_name else "None" }}</td>
+                <td>{{ m.pilot_name if m.pilot_name else "None" }}</td>
+
+                <td>
+                    {% if m.status == 'Planned' %}
+                        <span class="status-planned">🟢 Planned</span>
+                    {% else %}
+                        <span class="status-unplanned">🔴 Unplanned</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if m.status == 'Planned' %}
+                        <a href="/complete_mission/{{ m.mission_id }}">
+                            <button type="button">Complete</button>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+
+    <!-- COMPLETED MISSIONS -->
+    <h2 style="margin-top:40px;">Completed Missions</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Mission Name</th>
+            <th>Distance</th>
+            <th>Aircraft</th>
+            <th>Pilot</th>
+            <th>Status</th>
+        </tr>
+
+        {% for m in missions %}
+            {% if m.status == 'Completed' %}
+            <tr>
+                <td>{{ m.mission_id }}</td>
+                <td>{{ m.mission_name }}</td>
+                <td>{{ m.distance_km }} km</td>
+                <td>{{ m.aircraft_name if m.aircraft_name else "None" }}</td>
+                <td>{{ m.pilot_name if m.pilot_name else "None" }}</td>
+                <td><span style="color:blue;">🔵 Completed</span></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

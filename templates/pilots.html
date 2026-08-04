@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pilot Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="fleet-page">
+
+<div class="navbar">
+    <h2>✈ AEROMANAGE</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/fleet">Fleet</a>
+        <a href="/mission">Missions</a>
+        <a href="/pilots">Pilots</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Pilot Management</h1>
+
+    <!-- ADD PILOT -->
+    <div class="form-card">
+        <h3>Add New Pilot</h3>
+        <form method="POST">
+            <input name="pilot_name" placeholder="Pilot Name" required>
+            <input name="pilot_rank" placeholder="Rank (Captain, Major...)" required>
+            <input name="experience_years" type="number" placeholder="Experience (Years)" required>
+
+            <!-- Aircraft Dropdown -->
+            <select name="aircraft_id">
+                <option value="">Assign Aircraft (Optional)</option>
+                {% for f in fleet %}
+                    <option value="{{ f.aircraft_id }}">
+                        {{ f.aircraft_name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Add Pilot</button>
+        </form>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+        <form method="GET">
+            <input type="text" name="search" placeholder="Search Pilot">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- PILOT TABLE -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Experience</th>
+            <th>Assigned Aircraft</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for p in pilots %}
+        <tr>
+            <td>{{ p.pilot_id }}</td>
+            <td>{{ p.pilot_name }}</td>
+            <td>{{ p.pilot_rank }}</td>
+            <td>{{ p.experience_years }} yrs</td>
+            <td>
+                {{ p.aircraft_name if p.aircraft_name else "Not Assigned" }}
+            </td>
+            <td>
+                {% if p.status == "Available" %}
+                    <span class="status-planned">🟢 Available</span>
+                {% else %}
+                    <span class="status-unplanned">🔴 On Mission</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/delete_pilot/{{ p.pilot_id }}"
+                   onclick="return confirm('Delete pilot?');">
+                    <button type="button" style="background:red;">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

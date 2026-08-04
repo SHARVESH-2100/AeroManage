@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AEROMANAGE Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+<div class="login-box">
+    <h1>AEROMANAGE</h1>
+    <p>Fleet & Mission Management</p>
+
+    <!-- Error message -->
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Admin Login</button>
+    </form>
+</div>
+
+</body>
+</html>

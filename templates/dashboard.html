@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="navbar">
+    <h2>✈ AEROMANAGE Control Center</h2>
+    <div>
+        <a href="/dashboard">Home</a>
+        <a href="/fleet">Fleet</a>
+        <a href="/mission">Missions</a>
+        <a href="/pilots">Pilots</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1 style="margin-bottom:30px;">System Overview</h1>
+
+    <!-- Fleet Overview -->
+    <h2>Aircraft Overview</h2>
+    <div class="dashboard-grid">
+
+        <div class="dash-card">
+            <h3>Total Aircraft</h3>
+            <p class="big-number">{{ total_fleet }}</p>
+        </div>
+
+        <div class="dash-card green">
+            <h3>Available Aircraft</h3>
+            <p class="big-number">{{ available }}</p>
+        </div>
+
+        <div class="dash-card red">
+            <h3>Busy Aircraft</h3>
+            <p class="big-number">{{ busy }}</p>
+        </div>
+
+        <div class="dash-card">
+            <h3>Total Fuel Capacity</h3>
+            <p class="big-number">{{ fuel }} L</p>
+        </div>
+
+    </div>
+
+
+    <!-- Mission Overview -->
+    <h2 style="margin-top:50px;">Mission Overview</h2>
+    <div class="dashboard-grid">
+
+        <div class="dash-card">
+            <h3>Total Missions</h3>
+            <p class="big-number">{{ total_missions }}</p>
+        </div>
+
+        <div class="dash-card blue">
+            <h3>Completed Missions</h3>
+            <p class="big-number">{{ completed }}</p>
+        </div>
+
+    </div>
+
+
+    <!-- Pilot Overview -->
+    <h2 style="margin-top:50px;">Pilot Overview</h2>
+    <div class="dashboard-grid">
+
+        <div class="dash-card">
+            <h3>Total Pilots</h3>
+            <p class="big-number">{{ total_pilots }}</p>
+        </div>
+
+        <div class="dash-card red">
+            <h3>Active Pilots</h3>
+            <p class="big-number">{{ active_pilots }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

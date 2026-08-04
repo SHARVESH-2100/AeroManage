@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fleet Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="fleet-page">
+
+<div class="navbar">
+    <h2>✈ AEROMANAGE</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/fleet">Fleet</a>
+        <a href="/mission">Missions</a>
+        <a href="/pilots">Pilots</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Fleet Management</h1>
+
+    <!-- Add Aircraft Card -->
+    <div class="form-card">
+        <h3>Add New Aircraft</h3>
+        <form method="POST">
+            <input name="name" placeholder="Aircraft Name" required>
+            <input name="range" type="number" placeholder="Range (km)" required>
+            <input name="fuel" type="number" placeholder="Fuel Capacity (L)" required>
+            <button type="submit">Add Aircraft</button>
+        </form>
+    </div>
+
+    <!-- Fleet Table -->
+    <h2>Aircraft List</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Range</th>
+            <th>Fuel</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for f in fleet %}
+        <tr>
+            <td>{{ f.aircraft_id }}</td>
+            <td>{{ f.aircraft_name }}</td>
+            <td>{{ f.range_km }} km</td>
+            <td>{{ f.fuel_capacity }} L</td>
+            <td>
+                {% if f.status == "Available" %}
+                    <span class="status-planned">🟢 Available</span>
+                {% else %}
+                    <span class="status-unplanned">🔴 Busy</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/delete_aircraft/{{ f.aircraft_id }}"
+                   onclick="return confirm('Delete aircraft?');">
+                    <button type="button" style="background:red;">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

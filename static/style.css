@@ -1,0 +1,266 @@
+/* -------- GLOBAL -------- */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* -------- LOGIN PAGE -------- */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("/static/image2.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.login-box {
+    width: 360px;
+    padding: 35px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.login-box h1 {
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.login-box p {
+    margin-bottom: 25px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.login-box input {
+    border: none;
+    border-radius: 6px;
+}
+
+.login-box button {
+    width: 100%;
+    font-weight: bold;
+}
+
+/* -------- PAGE BACKGROUNDS -------- */
+.dashboard-page {
+    background: url("/static/image.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.fleet-page {
+    background: url("/static/image4.jpeg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.mission-page {
+    background: url("/static/image3.jpeg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* -------- NAVBAR -------- */
+.navbar {
+    background: linear-gradient(90deg, #0b3c7d, #0f5dbb);
+    padding: 15px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* -------- CONTAINER -------- */
+.container {
+    padding: 40px;
+    backdrop-filter: blur(4px);
+}
+
+/* -------- DASHBOARD GRID -------- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.dash-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.dash-card:hover {
+    transform: translateY(-5px);
+}
+
+.dash-card h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+.big-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Dashboard Color Variants */
+.dash-card.green {
+    border-left: 6px solid #2ecc71;
+}
+
+.dash-card.red {
+    border-left: 6px solid #e74c3c;
+}
+
+.dash-card.blue {
+    border-left: 6px solid #3498db;
+}
+
+/* -------- CARDS -------- */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card {
+    flex: 1 1 260px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+/* -------- FORMS -------- */
+form {
+    margin-bottom: 20px;
+}
+
+.form-section {
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+input, select {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* -------- BUTTONS -------- */
+button {
+    background: #0f5dbb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0b3c7d;
+}
+
+/* DELETE BUTTON */
+button[style*="red"] {
+    background-color: #c0392b !important;
+}
+
+button[style*="red"]:hover {
+    background-color: #922b21 !important;
+}
+
+/* -------- TABLE -------- */
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: #0f5dbb;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #eef4ff;
+}
+
+/* -------- STATUS BADGES -------- */
+.status-planned,
+.status-unplanned {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-planned {
+    background: green;
+    color: white;
+}
+
+.status-unplanned {
+    background: red;
+    color: white;
+}
+/* Form Card */
+.form-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+/* Search Box */
+.search-box {
+    margin-bottom: 20px;
+    max-width: 400px;
+}
